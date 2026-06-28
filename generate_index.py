@@ -2,7 +2,8 @@ import os
 
 # Konfiguration
 target_file = "index.md"
-ignored_folders = {".git", ".venv", "qrcodes", "import_text", "__pycache__"}
+# HIER: "Bilder" wurde zur Blacklist hinzugefügt
+ignored_folders = {".git", ".venv", "qrcodes", "import_text", "__pycache__", "Bilder"}
 
 # Dein fester Einleitungstext
 header_text = """# Die sprechenden Steine von Neuwittenbek
