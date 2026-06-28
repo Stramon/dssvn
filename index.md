@@ -26,7 +26,7 @@ Scannen Sie die QR-Codes an den Gedenksteinen, um mehr über das Leben und Schic
 * [Heinz Petersen](./petersen-heinz/)
 * [Bernhard Pfahl](./pfahl-bernhard/)
 * [Heinz Pohl](./pohl-heinz/)
-* [H. Popp](./popp-h/)
+* [Hinrich Popp](./popp-hinrich/)
 * [Willi Qualen](./qualen-willi/)
 * [Otto Radbruch](./radbruch-otto/)
 * [Peter Radbruch](./radbruch-peter/)
