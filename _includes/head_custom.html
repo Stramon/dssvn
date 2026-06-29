@@ -9,48 +9,45 @@
     .main-content { max-width: 52rem !important; margin: 0 auto !important; }
   }
 
-  /* --- MOBIL-OPTIMIERUNG --- */
+  /* --- MOBIL-OPTIMIERUNG (Bypass-Methode) --- */
   
-  /* Das originale, fehlerhafte Theme-Menü restlos ausblenden */
-  .site-nav-trigger, .main-nav-trigger, .site-header button { 
+  /* Originales Theme-Menü und dessen Trigger radikal ausblenden */
+  .site-nav-trigger, .main-nav-trigger, .site-header button, .nav-trigger, label[for="nav-trigger"] { 
     display: none !important; 
   }
 
-  /* Unser neues, intuitives Burger-Menü-Zeichen als direkter Link */
-  .custom-burger-link {
-    position: absolute;
-    right: 0;
-    top: 0;
-    height: 100%;
-    width: 60px;
+  /* Unser unkaputtbares Burger-Symbol: Festgetackert oben rechts im Viewport */
+  .custom-burger-fixed {
+    position: fixed !important;
+    top: 0 !important;
+    right: 0 !important;
+    width: 55px !important;
+    height: 55px !important;
     display: flex !important;
-    align-items: center;
-    justify-content: center;
+    align-items: center !important;
+    justify-content: center !important;
     color: #7253ed !important; /* Das lila Logo-Design des Themes */
-    font-size: 1.7rem;
+    font-size: 1.8rem !important;
     text-decoration: none !important;
-    z-index: 9999;
+    z-index: 999999 !important; /* Überlagert absolut alles */
+    background: transparent !important;
   }
 
-  /* Auf dem PC blenden wir das mobile Zeichen aus */
+  /* Auf dem PC blenden wir das mobile Zeichen komplett aus */
   @media (min-width: 50rem) {
-    .custom-burger-link { display: none !important; }
+    .custom-burger-fixed { display: none !important; }
   }
 </style>
 
 <script>
-  // Wir injizieren das Symbol direkt nach dem Laden in die mobile Kopfzeile
+  // Wir hängen das Symbol direkt an den Body an, das klappt immer
   document.addEventListener("DOMContentLoaded", function() {
-    // Falls das Theme je nach Version .site-header oder .main-header nutzt:
-    var header = document.querySelector(".site-header") || document.querySelector(".main-header");
-    if (header) {
-      header.style.position = "relative"; // Basis für absolute Positionierung des Icons
-      
+    if (!document.querySelector(".custom-burger-fixed")) {
       var burgerLink = document.createElement("a");
       burgerLink.href = "/";
-      burgerLink.className = "custom-burger-link";
+      burgerLink.className = "custom-burger-fixed";
       burgerLink.innerHTML = "☰";
-      header.appendChild(burgerLink);
+      document.body.appendChild(burgerLink);
     }
   });
 </script>
