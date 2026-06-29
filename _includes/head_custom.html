@@ -2,37 +2,57 @@
   /* Den englischen Footer ausblenden */
   .site-footer { display: none !important; }
 
-  /* Auf PCs und Tablets die doppelte Seitenleiste abschalten und Text zentrieren */
+  /* Auf PCs die doppelte Seitenleiste abschalten und Text zentrieren */
   @media (min-width: 50rem) {
     .side-bar { display: none !important; }
     .main { margin-left: 0 !important; }
     .main-content { max-width: 52rem !important; margin: 0 auto !important; }
   }
 
-  /* Styling für das unsichtbare Klick-Schild auf dem Handy */
-  .mobile-home-overlay {
-    position: fixed;
-    top: 0;
-    right: 0;
-    width: 75px;
-    height: 60px;
-    z-index: 999999;
-    background: transparent;
-    display: block;
+  /* --- MOBIL-OPTIMIERUNG --- */
+  
+  /* Das originale, fehlerhafte Theme-Menü restlos ausblenden */
+  .site-nav-trigger, .main-nav-trigger, .site-header button { 
+    display: none !important; 
   }
 
-  /* Auf dem PC brauchen wir das Schild nicht */
+  /* Sicherstellen, dass die Kopfzeile die richtige Positionierung erlaubt */
+  .site-header {
+    position: relative !important;
+  }
+
+  /* Unseren neuen, unkaputtbaren Übersicht-Button stylen */
+  .custom-mobile-nav {
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #7253ed !important; /* Das lila der Just-the-Docs Links */
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 0.9rem;
+    padding: 6px 10px;
+    border: 1px solid #e9ebec;
+    border-radius: 4px;
+    background-color: #f5f6f7;
+  }
+
+  /* Auf dem Desktop wird der mobile Button ausgeblendet */
   @media (min-width: 50rem) {
-    .mobile-home-overlay { display: none !important; }
+    .custom-mobile-nav { display: none !important; }
   }
 </style>
 
 <script>
-  // Wir injizieren den unsichtbaren Link direkt nach dem Laden in die Seite
+  // Wir injizieren den echten Link direkt nach dem Laden in die mobile Kopfzeile
   document.addEventListener("DOMContentLoaded", function() {
-    var overlay = document.createElement("a");
-    overlay.href = "/";
-    overlay.className = "mobile-home-overlay";
-    document.body.appendChild(overlay);
+    var header = document.querySelector(".site-header");
+    if (header) {
+      var navLink = document.createElement("a");
+      navLink.href = "/";
+      navLink.className = "custom-mobile-nav";
+      navLink.innerHTML = "Übersicht ☰";
+      header.appendChild(navLink);
+    }
   });
 </script>
