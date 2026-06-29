@@ -9,45 +9,43 @@
     .main-content { max-width: 52rem !important; margin: 0 auto !important; }
   }
 
-  /* --- MOBIL-OPTIMIERUNG (Bypass-Methode) --- */
+  /* --- MOBIL-OPTIMIERUNG --- */
   
-  /* Originales Theme-Menü und dessen Trigger radikal ausblenden */
-  .site-nav-trigger, .main-nav-trigger, .site-header button, .nav-trigger, label[for="nav-trigger"] { 
-    display: none !important; 
-  }
-
-  /* Unser unkaputtbares Burger-Symbol: Festgetackert oben rechts im Viewport */
-  .custom-burger-fixed {
-    position: fixed !important;
-    top: 0 !important;
-    right: 0 !important;
-    width: 55px !important;
-    height: 55px !important;
+  /* Unseren modifizierten Home-Burger-Button farblich anpassen */
+  #custom-menu-button {
     display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
+    align-items: center;
+    justify-content: center;
     color: #7253ed !important; /* Das lila Logo-Design des Themes */
-    font-size: 1.8rem !important;
-    text-decoration: none !important;
-    z-index: 999999 !important; /* Überlagert absolut alles */
-    background: transparent !important;
+    padding: 0.5rem;
   }
 
-  /* Auf dem PC blenden wir das mobile Zeichen komplett aus */
+  /* Auf dem PC blenden wir den Button aus */
   @media (min-width: 50rem) {
-    .custom-burger-fixed { display: none !important; }
+    #custom-menu-button { display: none !important; }
   }
 </style>
 
 <script>
-  // Wir hängen das Symbol direkt an den Body an, das klappt immer
   document.addEventListener("DOMContentLoaded", function() {
-    if (!document.querySelector(".custom-burger-fixed")) {
-      var burgerLink = document.createElement("a");
-      burgerLink.href = "/";
-      burgerLink.className = "custom-burger-fixed";
-      burgerLink.innerHTML = "☰";
-      document.body.appendChild(burgerLink);
+    // Wir greifen uns den echten, nativen Menü-Button des Themes
+    var nativeBtn = document.getElementById("menu-button");
+    
+    if (nativeBtn) {
+      // Wir bauen einen echten Link, der den Platz des Buttons einnimmt
+      var homeLink = document.createElement("a");
+      homeLink.href = "/";
+      homeLink.id = "custom-menu-button";
+      homeLink.className = nativeBtn.className; // Übernimmt die originale CSS-Positionierung im Header
+      homeLink.innerHTML = nativeBtn.innerHTML; // Kopiert das originale Drei-Striche-Icon (SVG)
+      
+      // Verhindert, dass Event-Handler des Themes auf den Klick anspringen
+      homeLink.addEventListener("click", function(e) {
+        e.stopPropagation();
+      });
+
+      // Tausch den alten Button im Header knallhart gegen unseren Link aus
+      nativeBtn.parentNode.replaceChild(homeLink, nativeBtn);
     }
   });
 </script>
