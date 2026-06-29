@@ -8,20 +8,31 @@
     .main { margin-left: 0 !important; }
     .main-content { max-width: 52rem !important; margin: 0 auto !important; }
   }
+
+  /* Styling für das unsichtbare Klick-Schild auf dem Handy */
+  .mobile-home-overlay {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 75px;
+    height: 60px;
+    z-index: 999999;
+    background: transparent;
+    display: block;
+  }
+
+  /* Auf dem PC brauchen wir das Schild nicht */
+  @media (min-width: 50rem) {
+    .mobile-home-overlay { display: none !important; }
+  }
 </style>
 
 <script>
-  // Klick auf das Burger-Menü abfangen und direkt zur Übersichtsseite umleiten
+  // Wir injizieren den unsichtbaren Link direkt nach dem Laden in die Seite
   document.addEventListener("DOMContentLoaded", function() {
-    var menuSelectors = '.site-nav-trigger, .main-nav-trigger, .js-main-nav-trigger, #js-main-nav-trigger';
-    var triggers = document.querySelectorAll(menuSelectors);
-    
-    triggers.forEach(function(trigger) {
-      trigger.addEventListener('click', function(e) {
-        e.preventDefault();
-        e.stopPropagation();
-        window.location.href = '/';
-      }, true); // 'true' fängt den Klick in der Vorflugphase ab, bevor das Theme das Menü ausklappt
-    });
+    var overlay = document.createElement("a");
+    overlay.href = "/";
+    overlay.className = "mobile-home-overlay";
+    document.body.appendChild(overlay);
   });
 </script>
