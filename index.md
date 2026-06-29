@@ -21,6 +21,7 @@ Scannen Sie die QR-Codes an den Gedenksteinen, um mehr über das Leben und Schic
 * [Kurt Klein](./klein-kurt/)
 * [Johannes Marxen](./marxen-johannes/)
 * [Hans Paetow](./paetow-hans/)
+* [Hanz Paetow](./paetow-hanz/)
 * [Fritz Petersen](./petersen-fritz/)
 * [Heinz Petersen](./petersen-heinz/)
 * [Bernhard Pfahl](./pfahl-bernhard/)
