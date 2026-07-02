@@ -16,7 +16,7 @@
       display: none !important; 
     }
 
-    /* 2. Dem originalen Burger-Button die Klick-Logik entziehen (wird rein passives Icon) */
+    /* 2. Dem originalen Burger-Button die Klick-Logik entziehen */
     #menu-button { 
       pointer-events: none !important; 
     }
@@ -37,9 +37,18 @@
       z-index: 99999 !important;
     }
 
-    /* 5. Das blaue Aufblitzen (Tap-Highlighting) beim Antippen komplett unterdrücken */
+    /* 5. Das blaue Aufblitzen beim Antippen unterdrücken */
     .site-title, .site-title::after, #menu-button, .site-header {
       -webkit-tap-highlight-color: transparent !important;
     }
   }
 </style>
+
+/* --- NUR AUF DER ÜBERSICHTSSEITE: Burger-Menü komplett ausblenden --- */
+{% if page.url == "/" or page.url == "/index.html" %}
+<style>
+  #menu-button {
+    display: none !important;
+  }
+</style>
+{% endif %}
