@@ -2,26 +2,27 @@
   /* Den englischen Footer ausblenden */
   .site-footer { display: none !important; }
 
-  /* --- PC-LAYOUT (Seitenleiste zur horizontalen Kopfzeile machen) --- */
+  /* --- GLOBALES LAYOUT & PC-OPTIMIERUNG --- */
+  
+  /* Auf PCs die vertikale Seitenleiste zur flachen Kopfzeile machen */
   @media (min-width: 50rem) {
-    /* Die Seitenleiste oben als flache Bar einrasten lassen */
     .side-bar {
       position: static !important;
       display: block !important;
       width: 100% !important;
       height: auto !important;
       padding: 0 !important;
-      background-color: #f5f6fa !important; /* Gleicher lila/grauer Hintergrund wie mobil */
+      background-color: #f5f6fa !important; /* Lila/grauer Hintergrund */
       border-right: none !important;
       border-bottom: 1px solid #e9ebf2 !important;
     }
 
-    /* Alles andere in der Seitenleiste (alten Navigationsbaum) ausblenden */
+    /* Alles andere in der PC-Seitenleiste (Navigationsbaum) ausblenden */
     .side-bar > *:not(.site-header) {
       display: none !important;
     }
 
-    /* Hauptinhalt zentrieren und Abstand nach oben anpassen */
+    /* Hauptinhalt zentrieren */
     .main {
       margin-left: 0 !important;
     }
@@ -34,27 +35,33 @@
 
   /* --- GLOBALE KOPFZEILEN-STYLINGS (Für PC & Mobile) --- */
   
-  /* Kopfzeile flexibel ausrichten (Titel links, Burger rechts) */
+  /* 1. Die Kopfzeile als Flexbox-Container definieren (Titel links, Burger rechts) */
   .site-header { 
     display: flex !important; 
     position: relative !important; 
-    justify-content: space-between !important;
+    justify-content: space-between !important; /* Erzwingt Aufteilung (links/rechts) */
     align-items: center !important;
     padding: 0.75rem 1rem !important;
+    width: 100% !important;
   }
 
-  /* Das standardmäßige Dropdown-Menü komplett deaktivieren */
-  .site-nav { 
+  /* 2. Den "Just the Docs" Navigationstitel und Text-Leaks im Keim ersticken */
+  .site-nav, .site-header .site-button { 
     display: none !important; 
   }
 
-  /* Das Burger-Icon auf PC und Handy erzwingen, aber Klicks durchlassen */
+  /* 3. Das Burger-Icon am PC und Handy sichtbar machen (wird per pointer-events zum passiven Bild) */
   #menu-button, .site-nav-trigger { 
     display: block !important;
+    order: 2 !important; /* Zwingt das Icon ans Ende der Flexbox (rechts) */
     pointer-events: none !important; 
+    margin-right: 0 !important;
   }
 
-  /* Den Titel-Link als unsichtbare Klickfläche über die GESAMTE Kopfzeile legen */
+  /* 4. Den Titel-Link als unsichtbare Klickfläche über die GESAMTE Kopfzeile legen */
+  .site-title {
+    order: 1 !important; /* Zwingt den Titel an den Anfang der Flexbox (links) */
+  }
   .site-title::after {
     content: "" !important;
     position: absolute !important;
