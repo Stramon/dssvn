@@ -41,7 +41,7 @@
     position: relative !important; 
     justify-content: space-between !important; /* Erzwingt Aufteilung (links/rechts) */
     align-items: center !important;             /* Vertikale Zentrierung aller Elemente */
-    padding: 0.75rem 1rem !important;
+    padding: 0.75rem 1rem !important;           /* Einheitlicher Außenabstand für die gesamte Zeile */
     width: 100% !important;
     min-height: 3.5rem !important;              /* Garantiert eine einheitliche Höhe */
   }
@@ -54,7 +54,7 @@
   /* 3. Das Burger-Icon perfekt auf der Mittelachse einmitten */
   #menu-button, .site-nav-trigger { 
     display: flex !important;
-    align-items: center !important;             /* Zentriert das Icon im Button */
+    align-items: center !important;             
     justify-content: center !important;
     order: 2 !important;                        /* Zwingt das Icon nach rechts */
     pointer-events: none !important; 
@@ -64,16 +64,17 @@
     line-height: 1 !important;
   }
 
-  /* Eventuelle SVG-Grafiken im Button ebenfalls auf Block setzen, um Baseline-Absacken zu verhindern */
+  /* Eventuelle SVG-Grafiken im Button ebenfalls auf Block setzen */
   #menu-button svg, .site-nav-trigger svg {
     display: block !important;
     margin: 0 !important;
   }
 
-  /* 4. Den Titel-Link als unsichtbare Klickfläche über die GESAMTE Kopfzeile legen */
+  /* 4. Den Titel-Link exakt linksbündig zwingen und Klickteppich drüberlegen */
   .site-title {
     order: 1 !important;                        /* Zwingt den Titel nach links */
     margin: 0 !important;
+    padding: 0 !important;                      /* Radikal-Schlag: Eliminiert das vererbte Links-Burger-Padding */
     line-height: 1.2 !important;
   }
   .site-title::after {
